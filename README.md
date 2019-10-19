@@ -58,7 +58,8 @@ response
   "expires_in": 3598,
   "scope": "read write",
   "jti": "9793af86-eca1-4831-a91d-a4cf4d8334fc"
-}```
+}
+```
 
 ### authentication
 request
