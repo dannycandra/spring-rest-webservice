@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "oauth.secret.key",
+    "type": "java.lang.String",
+    "description": "A description for 'oauth.secret.key'"
+  },
+  {
+    "name": "oauth.client.id",
+    "type": "java.lang.String",
+    "description": "A description for 'oauth.client.id'"
+  },
+  {
+    "name": "oauth.server.url",
+    "type": "java.lang.String",
+    "description": "A description for 'oauth.server.url'"
+  }
+]}
