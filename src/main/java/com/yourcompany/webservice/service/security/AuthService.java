@@ -30,7 +30,7 @@ import com.yourcompany.webservice.model.dto.LoginDto;
  */
 @Service
 public class AuthService implements Serializable {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(AuthService.class);
 
 	private static final long serialVersionUID = 1L;
@@ -43,7 +43,7 @@ public class AuthService implements Serializable {
 
 	@Value("${oauth.server.url}")
 	private String oauthServerUrl;
-	
+
 	@Value("${server.servlet.context-path}")
 	private String contextPath;
 
@@ -56,8 +56,8 @@ public class AuthService implements Serializable {
 	 * @throws URISyntaxException
 	 */
 	public OAuth2AccessToken authenticateUser(LoginDto loginDto) throws URISyntaxException {
-		
-		log.info("authenticate username:{}" , loginDto.getUsername());
+
+		log.info("authenticate username:{}", loginDto.getUsername());
 
 		String basicAuthString = oauthClientId + ":" + oauthSecretKey;
 
@@ -79,20 +79,18 @@ public class AuthService implements Serializable {
 		String oauthAuthorizeUrl = oauthServerUrl + contextPath + "/oauth/token";
 
 		ResponseEntity<OAuth2AccessToken> responseEntity;
-		try {			
-			responseEntity = restTemplate.exchange(oauthAuthorizeUrl, HttpMethod.POST,
-					requestEntity, OAuth2AccessToken.class);
-			
-			if(responseEntity.getStatusCode() != HttpStatus.OK) {
+		try {
+			responseEntity = restTemplate.exchange(oauthAuthorizeUrl, HttpMethod.POST, requestEntity,
+					OAuth2AccessToken.class);
+
+			if (responseEntity.getStatusCode() != HttpStatus.OK) {
 				throw new WrongUsernameOrPasswordException();
 			}
-			
+
 			return responseEntity.getBody();
 		} catch (Exception e) {
 			throw new WrongUsernameOrPasswordException();
 		}
-		
-
 
 	}
 

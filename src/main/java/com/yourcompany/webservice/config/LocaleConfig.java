@@ -12,9 +12,9 @@ public class LocaleConfig {
 
 	@Bean
 	public MessageSource messageSource() {
-	    Locale.setDefault(Locale.ENGLISH);
-	    ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-	    messageSource.addBasenames("classpath:org/springframework/security/messages");
-	    return messageSource;
+		Locale.setDefault(Locale.ENGLISH);
+		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+		messageSource.addBasenames("classpath:org/springframework/security/messages");
+		return messageSource;
 	}
 }

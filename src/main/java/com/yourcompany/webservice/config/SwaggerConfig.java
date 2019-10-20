@@ -32,7 +32,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @Profile("!tests")
 public class SwaggerConfig {
-	
+
 	public static final String BEARER = "Bearer";
 
 	@Value("${oauth.client.id}")
@@ -61,12 +61,8 @@ public class SwaggerConfig {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.alternateTypeRules(newRule(typeResolver.resolve(Pageable.class), pageableMixin(restConfiguration),
 						Ordered.HIGHEST_PRECEDENCE))
-				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.mycompany.webservice.controller"))
-				.paths(PathSelectors.any())
-				.build()
-				.apiInfo(apiInfo())
-				.securitySchemes(Arrays.asList(apiKey()));
+				.select().apis(RequestHandlerSelectors.basePackage("com.mycompany.webservice.controller"))
+				.paths(PathSelectors.any()).build().apiInfo(apiInfo()).securitySchemes(Arrays.asList(apiKey()));
 	}
 
 	/**
@@ -75,16 +71,11 @@ public class SwaggerConfig {
 	 * @return
 	 */
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder()
-				.title("APPS API")
-				.description("")
-				.termsOfServiceUrl("https://www.example.com/api")
+		return new ApiInfoBuilder().title("APPS API").description("").termsOfServiceUrl("https://www.example.com/api")
 				.contact(new Contact("Danny Candra", "http://www.example.com", "dannycandra@hotmail.com"))
-				.license("Danny Candra").licenseUrl("https://www.example.com")
-				.version("0.0.1")
-				.build();
+				.license("Danny Candra").licenseUrl("https://www.example.com").version("0.0.1").build();
 	}
-	
+
 	/**
 	 * Handling pageable in swagger ui
 	 * 

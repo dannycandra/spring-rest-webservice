@@ -17,38 +17,34 @@ import com.yourcompany.webservice.service.security.AppsUserDetailsService;
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	
+
 	@Autowired
 	private AuthenticationProvider authenticationProvider;
 
 	@Autowired
-    public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
+	public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
 		auth.authenticationProvider(authenticationProvider);
-    }
-	
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        final DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder());
-        return authProvider;
-    }
-    
-    @Override
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return new AppsUserDetailsService();
-    }
+	}
+
+	@Bean
+	public DaoAuthenticationProvider authenticationProvider() {
+		final DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+		authProvider.setUserDetailsService(userDetailsService());
+		authProvider.setPasswordEncoder(passwordEncoder());
+		return authProvider;
+	}
+
+	@Override
+	@Bean
+	public UserDetailsService userDetailsService() {
+		return new AppsUserDetailsService();
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.sessionManagement()
-			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-			.and()
-			.csrf().disable()
-			.authorizeRequests()
-			.antMatchers(ConfigConstants.AUTH_WHITELIST).permitAll()
-			.anyRequest().authenticated();
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf().disable()
+				.authorizeRequests().antMatchers(ConfigConstants.AUTH_WHITELIST).permitAll().anyRequest()
+				.authenticated();
 	}
 
 	@Override
