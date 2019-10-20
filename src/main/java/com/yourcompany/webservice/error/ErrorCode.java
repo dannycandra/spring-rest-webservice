@@ -7,7 +7,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public enum ErrorCode {
 
 	UNKNOWN_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "unknown error", "unknown error"),
-	WRONG_USERNAME_OR_PASSWORD_ERROR(HttpStatus.BAD_REQUEST, "wrong username or password", "wrong username or password"),
+	WRONG_USERNAME_OR_PASSWORD_ERROR(HttpStatus.BAD_REQUEST, "wrong username or password",
+			"wrong username or password"),
 	UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "unauthorized", "unauthorized");
 
 	@JsonIgnore

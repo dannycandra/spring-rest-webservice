@@ -20,7 +20,7 @@ import com.yourcompany.webservice.model.dto.ErrorDto;
  */
 @ControllerAdvice(annotations = RestController.class)
 public class AppsExceptionHandler {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(AppsExceptionHandler.class);
 
 	/**
@@ -35,7 +35,7 @@ public class AppsExceptionHandler {
 				ex.getError().getErrorMessage(), ex.getError().getHttpStatus(), ex.getError().getErrorCode());
 		return handleKnownError(ex);
 	}
-	
+
 	/**
 	 * Handling known exception
 	 * 
@@ -50,7 +50,7 @@ public class AppsExceptionHandler {
 		errorsDto.setMessage(ErrorCode.UNKNOWN_ERROR.getErrorMessage());
 		return ResponseEntity.status(ErrorCode.UNKNOWN_ERROR.getHttpStatus()).body(errorsDto);
 	}
-	
+
 	/**
 	 * Handling unknown base exception
 	 * 
@@ -65,7 +65,7 @@ public class AppsExceptionHandler {
 		errorsDto.setMessage(ErrorCode.UNKNOWN_ERROR.getErrorMessage());
 		return ResponseEntity.status(ErrorCode.UNKNOWN_ERROR.getHttpStatus()).body(errorsDto);
 	}
-	
+
 	/**
 	 * Handling known exception
 	 * 
@@ -76,11 +76,11 @@ public class AppsExceptionHandler {
 		ErrorDto errorsDto = new ErrorDto();
 		errorsDto.setCode(ex.getError().getErrorCode());
 		errorsDto.setMessage(ex.getError().getErrorMessage());
-		
+
 		if (!ex.getErrorDetails().isEmpty()) {
 			errorsDto.setErrorsDetails(ex.getErrorDetails());
 		}
-		
+
 		return ResponseEntity.status(ex.getError().getHttpStatus()).body(errorsDto);
 	}
 }

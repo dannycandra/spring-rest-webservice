@@ -49,7 +49,7 @@ public class OAuth2CommonConfig {
 	public OAuth2RequestFactory oAuth2RequestFactory() {
 		return new DefaultOAuth2RequestFactory(clientDetailsService);
 	}
-	
+
 	private AccessTokenConverter appsAccessTokenConverter() {
 		return new AppsAccessTokenConverter();
 	}

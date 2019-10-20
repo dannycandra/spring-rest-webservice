@@ -43,7 +43,7 @@ public class ErrorDto {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
+
 	public List<String> getErrorsDetails() {
 		return errorsDetails;
 	}

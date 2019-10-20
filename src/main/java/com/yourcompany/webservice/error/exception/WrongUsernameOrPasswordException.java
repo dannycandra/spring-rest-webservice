@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.yourcompany.webservice.error.ErrorCode;
 
-public class WrongUsernameOrPasswordException extends AppBaseRuntimeException{
+public class WrongUsernameOrPasswordException extends AppBaseRuntimeException {
 
 	private static final long serialVersionUID = 1L;
 

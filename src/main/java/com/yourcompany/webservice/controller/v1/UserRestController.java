@@ -27,7 +27,7 @@ public class UserRestController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private ExtraInfoService extraInfoService;
 
@@ -43,7 +43,7 @@ public class UserRestController {
 	@GetMapping("/{userId}/authentication")
 	public Authentication getAuthentication(@PathVariable(value = "userId") Long userId,
 			Authentication authentication) {
-		
+
 		// retrieve userId from token
 		Long userIdFromToken = extraInfoService.getUserId(authentication);
 

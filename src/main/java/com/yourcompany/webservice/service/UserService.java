@@ -18,22 +18,22 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private ModelMapper modelMapper;
 
 	public Page<UserDto> getUsers(Predicate predicate, Pageable pageable) {
 		// retrieve all data
 		Page<User> pagedResult = userRepository.findAll(predicate, pageable);
-		
+
 		// convert from page<entity> to page<dto>
 		Page<UserDto> dtoPage = pagedResult.map(new Function<User, UserDto>() {
-		    @Override
-		    public UserDto apply(User entity) {
-		        return modelMapper.map(entity, UserDto.class);
-		    }
+			@Override
+			public UserDto apply(User entity) {
+				return modelMapper.map(entity, UserDto.class);
+			}
 		});
-		
+
 		return dtoPage;
 	}
 }

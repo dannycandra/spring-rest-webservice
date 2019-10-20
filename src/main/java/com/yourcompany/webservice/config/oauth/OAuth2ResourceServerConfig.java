@@ -14,23 +14,19 @@ import com.yourcompany.webservice.config.ConfigConstants;
 @Configuration
 @EnableResourceServer
 public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter {
-	
+
 	@Autowired
 	private DefaultTokenServices defaultTokenService;
-	
+
 	@Override
 	public void configure(ResourceServerSecurityConfigurer config) {
 		config.tokenServices(defaultTokenService);
 	}
-	
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-		http.sessionManagement()
-			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-			.and()
-			.csrf().disable()
-			.authorizeRequests()
-			.antMatchers(ConfigConstants.AUTH_WHITELIST).permitAll()
-			.anyRequest().authenticated();
-    }
+
+	@Override
+	public void configure(HttpSecurity http) throws Exception {
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf().disable()
+				.authorizeRequests().antMatchers(ConfigConstants.AUTH_WHITELIST).permitAll().anyRequest()
+				.authenticated();
+	}
 }

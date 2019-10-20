@@ -19,7 +19,7 @@ public class AuditorAwareService implements AuditorAware<User> {
 	private UserRepository userRepository;
 
 	@Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public Optional<User> getCurrentAuditor() {
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
 		return userRepository.findByEmail(email);

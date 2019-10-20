@@ -3,7 +3,6 @@ package com.yourcompany.webservice.model.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-
 public class UserDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -18,11 +17,11 @@ public class UserDto implements Serializable {
 	private String password;
 
 	private String status;
-	
+
 	private UserDto createdByUser;
 
 	private UserDto lastModifiedByUser;
-	
+
 	private Date createdDate;
 
 	private Date modifiedDate;

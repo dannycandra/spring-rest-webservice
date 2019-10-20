@@ -12,12 +12,12 @@ import com.yourcompany.webservice.service.audit.AuditorAwareService;
 @Configuration
 @EnableJpaAuditing(auditorAwareRef = "auditorAware")
 public class AuditingConfiguration {
-	
+
 	@Autowired
 	private AuditorAwareService auditorAwareService;
-	
-    @Bean
-    public AuditorAware<User> auditorAware() {
-        return auditorAwareService;
-    }
+
+	@Bean
+	public AuditorAware<User> auditorAware() {
+		return auditorAwareService;
+	}
 }

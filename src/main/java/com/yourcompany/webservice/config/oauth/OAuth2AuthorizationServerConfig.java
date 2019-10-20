@@ -68,5 +68,5 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 	public TokenEnhancer tokenEnhancer() {
 		return new TokenEnhancerImpl();
 	}
-	
+
 }
