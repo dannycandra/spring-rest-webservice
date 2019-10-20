@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.querydsl.core.types.Predicate;
+import com.yourcompany.webservice.error.exception.UnauthorizedException;
 import com.yourcompany.webservice.model.dto.UserDto;
 import com.yourcompany.webservice.model.entity.QUser;
 import com.yourcompany.webservice.model.entity.User;
 import com.yourcompany.webservice.service.UserService;
+import com.yourcompany.webservice.service.security.ExtraInfoService;
 
 import io.swagger.annotations.Api;
 
@@ -25,6 +27,9 @@ public class UserRestController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ExtraInfoService extraInfoService;
 
 	@GetMapping
 	public Page<UserDto> getUsers(Pageable pageable, @QuerydslPredicate(root = User.class) Predicate predicate) {
@@ -37,7 +42,16 @@ public class UserRestController {
 
 	@GetMapping("/{userId}/authentication")
 	public Authentication getAuthentication(@PathVariable(value = "userId") Long userId,
-			Authentication authentication) { 
-		return authentication;
+			Authentication authentication) {
+		
+		// retrieve userId from token
+		Long userIdFromToken = extraInfoService.getUserId(authentication);
+
+		// checking if user is allowed to retrieve data
+		if (userIdFromToken.equals(userId)) {
+			return authentication;
+		}
+
+		throw new UnauthorizedException();
 	}
 }

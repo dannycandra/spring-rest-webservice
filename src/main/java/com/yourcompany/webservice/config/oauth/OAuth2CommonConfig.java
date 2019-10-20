@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.OAuth2RequestFactory;
 import org.springframework.security.oauth2.provider.request.DefaultOAuth2RequestFactory;
+import org.springframework.security.oauth2.provider.token.AccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
@@ -30,6 +31,7 @@ public class OAuth2CommonConfig {
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+		converter.setAccessTokenConverter(appsAccessTokenConverter());
 		converter.setSigningKey(oauthSecretKey);
 		return converter;
 	}
@@ -47,4 +49,9 @@ public class OAuth2CommonConfig {
 	public OAuth2RequestFactory oAuth2RequestFactory() {
 		return new DefaultOAuth2RequestFactory(clientDetailsService);
 	}
+	
+	private AccessTokenConverter appsAccessTokenConverter() {
+		return new AppsAccessTokenConverter();
+	}
+
 }

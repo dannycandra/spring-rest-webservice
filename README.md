@@ -52,12 +52,13 @@ request
 response
 ```
 {
-  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzE1MTg5MjAsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6Ijk3OTNhZjg2LWVjYTEtNDgzMS1hOTFkLWE0Y2Y0ZDgzMzRmYyIsImNsaWVudF9pZCI6ImFwcHMtY2xpZW50Iiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.VrEIF7aJOP6bEGGdW3tP_toG-ND309FzhvKhp9gD3ZY",
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkB5b3VyY29tcGFueS53aGF0ZXZlciIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE1NzE1MzM1NzYsInVzZXJJZCI6MSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6IjE3MDVmYTgyLTgxYzMtNGI1ZS04YTA5LTQ2NTNlYThhNDVhMCIsImNsaWVudF9pZCI6ImFwcHMtY2xpZW50In0.HX0BL_jlI0tPUAhBjTt9K0XsjoDd194KeoUZKoPmq0M",
   "token_type": "bearer",
-  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhdGkiOiI5NzkzYWY4Ni1lY2ExLTQ4MzEtYTkxZC1hNGNmNGQ4MzM0ZmMiLCJleHAiOjE1NzQxMDczMjAsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJqdGkiOiJmOWUxMWRiNi04MWEyLTRjZTMtYWRjZi03NWRiYzc0NGZmZjAiLCJjbGllbnRfaWQiOiJhcHBzLWNsaWVudCJ9.v_wNGmjRZXGlzFEHMtQcrKVlNXjuWleGPN3CXTbB0SE",
-  "expires_in": 3598,
+  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkB5b3VyY29tcGFueS53aGF0ZXZlciIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhdGkiOiIxNzA1ZmE4Mi04MWMzLTRiNWUtOGEwOS00NjUzZWE4YTQ1YTAiLCJleHAiOjE1NzQxMjE5NzYsInVzZXJJZCI6MSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6IjZhNGMxYzA1LWRmZWYtNGMzMS04MTFjLWU2ZmY5NTAzOGZkYiIsImNsaWVudF9pZCI6ImFwcHMtY2xpZW50In0.owEk5oXD4ZzW8R5FZKd7WpUiAqmiFe78jGIUbmyqxLs",
+  "expires_in": 3594,
   "scope": "read write",
-  "jti": "9793af86-eca1-4831-a91d-a4cf4d8334fc"
+  "userId": 1,
+  "jti": "1705fa82-81c3-4b5e-8a09-4653ea8a45a0"
 }
 ```
 
@@ -67,8 +68,9 @@ request
 > GET /yourcompany/api/v1/users/1/authentication HTTP/1.1
 > Host: localhost:8080
 > User-Agent: insomnia/7.0.1
-> Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzE1MjE3OTAsInVzZXJfbmFtZSI6ImFkbWluQHlvdXJjb21wYW55LndoYXRldmVyIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6IjJlMWM5MDFiLTY4NTMtNGFlZi04ZDljLTM5MTkwMGRlYTZmMiIsImNsaWVudF9pZCI6ImFwcHMtY2xpZW50Iiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.aNUj2ywSQusbwGBOxXAekF6pfvp8c-emGx88XLdahQU
+> Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkB5b3VyY29tcGFueS53aGF0ZXZlciIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE1NzE1MzM1NzYsInVzZXJJZCI6MSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6IjE3MDVmYTgyLTgxYzMtNGI1ZS04YTA5LTQ2NTNlYThhNDVhMCIsImNsaWVudF9pZCI6ImFwcHMtY2xpZW50In0.HX0BL_jlI0tPUAhBjTt9K0XsjoDd194KeoUZKoPmq0M
 > Accept: */*
+
 ```
 
 response
@@ -82,9 +84,22 @@ response
   "details": {
     "remoteAddress": "0:0:0:0:0:0:0:1",
     "sessionId": null,
-    "tokenValue": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzE1MjE3OTAsInVzZXJfbmFtZSI6ImFkbWluQHlvdXJjb21wYW55LndoYXRldmVyIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6IjJlMWM5MDFiLTY4NTMtNGFlZi04ZDljLTM5MTkwMGRlYTZmMiIsImNsaWVudF9pZCI6ImFwcHMtY2xpZW50Iiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.aNUj2ywSQusbwGBOxXAekF6pfvp8c-emGx88XLdahQU",
+    "tokenValue": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkB5b3VyY29tcGFueS53aGF0ZXZlciIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE1NzE1MzM1NzYsInVzZXJJZCI6MSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6IjE3MDVmYTgyLTgxYzMtNGI1ZS04YTA5LTQ2NTNlYThhNDVhMCIsImNsaWVudF9pZCI6ImFwcHMtY2xpZW50In0.HX0BL_jlI0tPUAhBjTt9K0XsjoDd194KeoUZKoPmq0M",
     "tokenType": "Bearer",
-    "decodedDetails": null
+    "decodedDetails": {
+      "user_name": "admin@yourcompany.whatever",
+      "scope": [
+        "read",
+        "write"
+      ],
+      "exp": 1571533576,
+      "userId": 1,
+      "authorities": [
+        "ROLE_USER"
+      ],
+      "jti": "1705fa82-81c3-4b5e-8a09-4653ea8a45a0",
+      "client_id": "apps-client"
+    }
   },
   "authenticated": true,
   "userAuthentication": {
@@ -100,7 +115,6 @@ response
     "name": "admin@yourcompany.whatever"
   },
   "principal": "admin@yourcompany.whatever",
-  "credentials": "",
   "oauth2Request": {
     "clientId": "apps-client",
     "scope": [
@@ -117,10 +131,11 @@ response
     "redirectUri": null,
     "responseTypes": [],
     "extensions": {},
-    "refreshTokenRequest": null,
-    "grantType": null
+    "grantType": null,
+    "refreshTokenRequest": null
   },
   "clientOnly": false,
+  "credentials": "",
   "name": "admin@yourcompany.whatever"
 }
 ```
