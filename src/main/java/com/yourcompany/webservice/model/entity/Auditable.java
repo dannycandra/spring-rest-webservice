@@ -3,6 +3,8 @@ package com.yourcompany.webservice.model.entity;
 import java.util.Date;
 
 import javax.persistence.EntityListeners;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,18 +20,22 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public abstract class Auditable<U> {
 
 	@CreatedBy
-    protected U createdBy;
+	@ManyToOne
+	@JoinColumn(name = "created_by")
+	protected U createdBy;
 
-    @CreatedDate
+	@CreatedDate
 	@Temporal(TemporalType.TIMESTAMP)
-    protected Date createdDate;
+	protected Date createdDate;
 
-    @LastModifiedBy
-    protected U lastModifiedBy;
+	@LastModifiedBy
+	@ManyToOne
+	@JoinColumn(name = "last_modified_by")
+	protected U lastModifiedBy;
 
-    @LastModifiedDate
+	@LastModifiedDate
 	@Temporal(TemporalType.TIMESTAMP)
-    protected Date lastModifiedDate;
+	protected Date lastModifiedDate;
 
 	public U getCreatedBy() {
 		return createdBy;
