@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(255) NOT NULL COMMENT 'password is hashed in bcrypt',
   `organization_id` bigint(20) DEFAULT NULL COMMENT 'association to organization',
   `status` enum('ACTIVE','INACTIVE') NOT NULL DEFAULT 'INACTIVE' COMMENT 'status',
-  `creation_date` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'audit data',
+  `created_date` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'audit data',
   `created_by` bigint(20) DEFAULT NULL COMMENT 'audit data',
   `last_modified_date` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'audit data',
   `last_modified_by` bigint(20) DEFAULT NULL COMMENT 'audit data',

@@ -22,7 +22,7 @@ public abstract class Auditable<U> {
 
     @CreatedDate
 	@Temporal(TemporalType.TIMESTAMP)
-    protected Date creationDate;
+    protected Date createdDate;
 
     @LastModifiedBy
     protected U lastModifiedBy;
@@ -39,12 +39,12 @@ public abstract class Auditable<U> {
 		this.createdBy = createdBy;
 	}
 
-	public Date getCreationDate() {
-		return creationDate;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
 
 	public U getLastModifiedBy() {
