@@ -1,5 +1,6 @@
 package com.yourcompany.webservice.model.entity;
 
+import java.math.BigInteger;
 import java.util.Date;
 
 import javax.persistence.EntityListeners;
@@ -13,6 +14,7 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @MappedSuperclass
@@ -36,6 +38,9 @@ public abstract class Auditable<U> {
 	@LastModifiedDate
 	@Temporal(TemporalType.TIMESTAMP)
 	protected Date lastModifiedDate;
+	
+	@Version
+	private BigInteger version;
 
 	public U getCreatedBy() {
 		return createdBy;
@@ -68,4 +73,13 @@ public abstract class Auditable<U> {
 	public void setLastModifiedDate(Date lastModifiedDate) {
 		this.lastModifiedDate = lastModifiedDate;
 	}
+
+	public BigInteger getVersion() {
+		return version;
+	}
+
+	public void setVersion(BigInteger version) {
+		this.version = version;
+	}
+	
 }

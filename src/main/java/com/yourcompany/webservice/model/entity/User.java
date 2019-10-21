@@ -28,8 +28,14 @@ public class User extends Auditable<User> implements Serializable {
 	private String lastname;
 
 	private String password;
-
-	private String status;
+	
+	private boolean accountNonExpired;
+	
+	private boolean accountNonLocked;
+	
+	private boolean credentialNonExpired;
+	
+	private boolean enabled;
 
 	public User() {
 	}
@@ -74,12 +80,36 @@ public class User extends Auditable<User> implements Serializable {
 		this.password = password;
 	}
 
-	public String getStatus() {
-		return status;
+	public boolean isAccountNonExpired() {
+		return accountNonExpired;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setAccountNonExpired(boolean accountNonExpired) {
+		this.accountNonExpired = accountNonExpired;
+	}
+
+	public boolean isAccountNonLocked() {
+		return accountNonLocked;
+	}
+
+	public void setAccountNonLocked(boolean accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
+	}
+
+	public boolean isCredentialNonExpired() {
+		return credentialNonExpired;
+	}
+
+	public void setCredentialNonExpired(boolean credentialNonExpired) {
+		this.credentialNonExpired = credentialNonExpired;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 }
