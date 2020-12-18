@@ -145,10 +145,12 @@
 		</dependency>
 
 		<!-- xml support -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.dataformat</groupId>
-			<artifactId>jackson-dataformat-xml</artifactId>
-		</dependency>
+		<!-- this cause default response format to be xml -->
+		<!-- http request header accept:application/json need to be applied -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.fasterxml.jackson.dataformat</groupId> -->
+<!-- 			<artifactId>jackson-dataformat-xml</artifactId> -->
+<!-- 		</dependency> -->
 
 		<!-- querydsl -->
 		<dependency>

@@ -3,8 +3,11 @@ package com.yourcompany.webservice.config;
 import static springfox.documentation.schema.AlternateTypeRules.newRule;
 
 import java.lang.reflect.Type;
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 
+import org.modelmapper.spi.ErrorMessage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +16,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.core.Ordered;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
+import org.springframework.http.ResponseEntity;
 
 import com.fasterxml.classmate.TypeResolver;
 
@@ -21,18 +25,23 @@ import springfox.documentation.builders.AlternateTypePropertyBuilder;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.ApiKey;
+import springfox.documentation.service.AuthorizationScope;
 import springfox.documentation.service.Contact;
+import springfox.documentation.service.HttpAuthenticationScheme;
+import springfox.documentation.service.SecurityReference;
 import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 
+@EnableOpenApi
 @Configuration
 @Profile("!tests")
 @SuppressWarnings("deprecation")
 public class SwaggerConfig {
 
-	public static final String BEARER = "Bearer";
+	public static final String BEARER = "apiKey";
 
 	@Value("${oauth.client.id}")
 	private String oauthClientId;
@@ -57,11 +66,21 @@ public class SwaggerConfig {
 	@Bean
 	@ConditionalOnMissingBean
 	public Docket api() {
-		return new Docket(DocumentationType.SWAGGER_2)
+		return new Docket(DocumentationType.OAS_30)
 				.alternateTypeRules(newRule(typeResolver.resolve(Pageable.class), pageableMixin(restConfiguration),
 						Ordered.HIGHEST_PRECEDENCE))
-				.select().apis(RequestHandlerSelectors.basePackage("com.yourcompany.webservice.controller"))
-				.paths(PathSelectors.any()).build().apiInfo(apiInfo()).securitySchemes(Arrays.asList(apiKey()));
+				.select()
+				.apis(RequestHandlerSelectors.basePackage("com.yourcompany.webservice.controller"))
+				.paths(PathSelectors.any())
+				.build()
+				.apiInfo(apiInfo())
+                .directModelSubstitute(LocalDate.class, String.class)
+                .genericModelSubstitutes(ResponseEntity.class)
+                .additionalModels(new TypeResolver().resolve(ErrorMessage.class))
+                .useDefaultResponseMessages(false)
+				.securityContexts(Arrays.asList(securityContext()))
+				.securitySchemes(Arrays.asList(securityScheme()))
+                .enableUrlTemplating(false);
 	}
 
 	/**
@@ -101,8 +120,28 @@ public class SwaggerConfig {
 	private AlternateTypePropertyBuilder property(Class<?> type, String name) {
 		return new AlternateTypePropertyBuilder().withName(name).withType(type).withCanRead(true).withCanWrite(true);
 	}
+//
+//	private ApiKey apiKey() {
+//		return new ApiKey(BEARER, "Authorization", "header");
+//	}
+	
+    private HttpAuthenticationScheme securityScheme() {
+        return HttpAuthenticationScheme.JWT_BEARER_BUILDER.name("BearerToken").build();
+    }
 
-	private ApiKey apiKey() {
-		return new ApiKey(BEARER, "Authorization", "header");
-	}
+    private SecurityContext securityContext() {
+        return SecurityContext.builder()
+                .securityReferences(defaultAuth())
+                .operationSelector(operationContext ->
+                        operationContext.requestMappingPattern().startsWith("/api/v1/")
+                )
+                .build();
+    }
+
+    private List<SecurityReference> defaultAuth() {
+        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
+        authorizationScopes[0] = authorizationScope;
+        return Arrays.asList(new SecurityReference("BearerToken", authorizationScopes));
+    }
 }
