@@ -12,10 +12,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.yourcompany.webservice.service.security.AppsUserDetailsService;
 
 @Configuration
+@EnableWebMvc
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired

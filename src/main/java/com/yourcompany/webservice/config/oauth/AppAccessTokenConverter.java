@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @SuppressWarnings("deprecation")
 @Component
-public class AppsAccessTokenConverter extends DefaultAccessTokenConverter {
+public class AppAccessTokenConverter extends DefaultAccessTokenConverter {
 
 	@Override
 	public OAuth2Authentication extractAuthentication(Map<String, ?> claims) {

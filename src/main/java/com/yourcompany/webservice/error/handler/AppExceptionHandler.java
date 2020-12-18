@@ -19,9 +19,9 @@ import com.yourcompany.webservice.model.dto.ErrorDto;
  * @author candra
  */
 @ControllerAdvice(annotations = RestController.class)
-public class AppsExceptionHandler {
+public class AppExceptionHandler {
 
-	private static final Logger log = LoggerFactory.getLogger(AppsExceptionHandler.class);
+	private static final Logger log = LoggerFactory.getLogger(AppExceptionHandler.class);
 
 	/**
 	 * Handling known exception

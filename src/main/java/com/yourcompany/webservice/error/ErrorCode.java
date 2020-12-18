@@ -16,12 +16,12 @@ public enum ErrorCode {
 
 	private String errorMessage;
 
-	private String errorDetailsTemplate;
+	private String errorMessageDetails;
 
-	private ErrorCode(HttpStatus httpStatus, String errorMessage, String errorDetailsTemplate) {
+	private ErrorCode(HttpStatus httpStatus, String errorMessage, String errorMessageDetails) {
 		this.httpStatus = httpStatus;
 		this.errorMessage = errorMessage;
-		this.errorDetailsTemplate = errorDetailsTemplate;
+		this.errorMessageDetails = errorMessageDetails;
 	}
 
 	public HttpStatus getHttpStatus() {
@@ -36,8 +36,8 @@ public enum ErrorCode {
 		return errorMessage;
 	}
 
-	public String getErrorDetailsTemplate() {
-		return errorDetailsTemplate;
+	public String getErrorMessageDetails() {
+		return errorMessageDetails;
 	}
 
 }

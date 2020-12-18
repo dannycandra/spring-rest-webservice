@@ -52,7 +52,7 @@ public class OAuth2CommonConfig {
 	}
 
 	private AccessTokenConverter appsAccessTokenConverter() {
-		return new AppsAccessTokenConverter();
+		return new AppAccessTokenConverter();
 	}
 
 }

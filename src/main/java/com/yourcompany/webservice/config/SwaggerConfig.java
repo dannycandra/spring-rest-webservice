@@ -27,9 +27,9 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.AuthorizationScope;
 import springfox.documentation.service.Contact;
-import springfox.documentation.service.HttpAuthenticationScheme;
 import springfox.documentation.service.SecurityReference;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
@@ -125,15 +125,15 @@ public class SwaggerConfig {
 //		return new ApiKey(BEARER, "Authorization", "header");
 //	}
 	
-    private HttpAuthenticationScheme securityScheme() {
-        return HttpAuthenticationScheme.JWT_BEARER_BUILDER.name("BearerToken").build();
-    }
+	private ApiKey securityScheme() {
+	    return new ApiKey("apiKey", "apiKey", "header");
+	 }
 
     private SecurityContext securityContext() {
         return SecurityContext.builder()
                 .securityReferences(defaultAuth())
                 .operationSelector(operationContext ->
-                        operationContext.requestMappingPattern().startsWith("/api/v1/")
+                        operationContext.requestMappingPattern().startsWith("/api")
                 )
                 .build();
     }
@@ -142,6 +142,6 @@ public class SwaggerConfig {
         AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
         AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
         authorizationScopes[0] = authorizationScope;
-        return Arrays.asList(new SecurityReference("BearerToken", authorizationScopes));
+        return Arrays.asList(new SecurityReference("apiKey", authorizationScopes));
     }
 }

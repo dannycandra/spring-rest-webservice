@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.ResponseErrorHandler;
 
 @Component
-public class AppsResponseErrorHandler implements ResponseErrorHandler {
+public class AppResponseErrorHandler implements ResponseErrorHandler {
 
-	private static final Logger log = LoggerFactory.getLogger(AppsResponseErrorHandler.class);
+	private static final Logger log = LoggerFactory.getLogger(AppResponseErrorHandler.class);
 
 	@Override
 	public boolean hasError(ClientHttpResponse response) throws IOException {
