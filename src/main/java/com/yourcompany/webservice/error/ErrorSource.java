@@ -2,15 +2,9 @@ package com.yourcompany.webservice.error;
 
 public enum ErrorSource {
 
-	VALIDATION_METADATA_TABLE("METADATA_TABLE"), VALIDATION_CHANGES_DESCRIPTION("CHANGES_DESCRIPTION");
-
-	private String source;
-
-	ErrorSource(String source) {
-		this.source = source;
-	}
+	VALIDATION_USER_DATA, VALIDATION_CHANGES_DESCRIPTION;
 
 	public String getSource() {
-		return source;
+		return this.name();
 	}
 }

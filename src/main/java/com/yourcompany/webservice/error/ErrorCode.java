@@ -6,10 +6,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public enum ErrorCode {
 
-	UNKNOWN_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "unknown error", "unknown error"),
+	UNKNOWN_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "unknown error", "unknown error has been occured, check server log for details"),
 	WRONG_USERNAME_OR_PASSWORD_ERROR(HttpStatus.BAD_REQUEST, "wrong username or password",
-			"wrong username or password"),
-	UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "unauthorized", "unauthorized");
+			"wrong username or password, please check if you have the right access data"),
+	UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "unauthorized", "you are not authorized to access this resource, please authorize first and try again");
 
 	@JsonIgnore
 	private HttpStatus httpStatus;

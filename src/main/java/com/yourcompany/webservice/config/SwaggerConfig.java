@@ -17,6 +17,7 @@ import org.springframework.core.Ordered;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.fasterxml.classmate.TypeResolver;
 
@@ -143,5 +144,10 @@ public class SwaggerConfig {
         AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
         authorizationScopes[0] = authorizationScope;
         return Arrays.asList(new SecurityReference("apiKey", authorizationScopes));
+    }
+    
+    @Bean
+    public InternalResourceViewResolver defaultViewResolver() {
+        return new InternalResourceViewResolver();
     }
 }

@@ -11,7 +11,7 @@ public class ErrorDto {
 	private String code;
 	private String message;
 	private List<String> errorsDetails;
-	private String errorSource;
+	private String errorSource = "error source has not been set";
 
 	public ErrorDto() {
 		code = new String();
