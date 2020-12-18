@@ -28,6 +28,7 @@ import com.yourcompany.webservice.model.dto.LoginDto;
  * 
  * @author danny
  */
+@SuppressWarnings("deprecation")
 @Service
 public class AuthService implements Serializable {
 
