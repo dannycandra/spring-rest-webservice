@@ -5,17 +5,17 @@ The flyway script will initialize a database with a user Table, you could run re
 
 # What's included
 ## libraries
-- spring boot
+- spring boot (2.4.1)
 - spring-boot-starter-web
 - spring-boot-starter-data-jpa
 - spring-boot-starter-actuator
 - spring-boot-starter-hateoas
 - spring-boot-starter-security
-- spring-security-oauth2-autoconfigure (2.1.9.RELEASE)
-- spring-security-oauth2 (2.3.5.RELEASE)
-- spring-security-jwt (1.0.10.RELEASE)
+- spring-security-oauth2-autoconfigure (2.4.0)
+- spring-security-oauth2 (2.5.0.RELEASE)
+- spring-security-jwt (1.1.1.RELEASE)
 - mariadb java client
-- swagger ui (springfox 2.9.2)
+- swagger ui (springfox 3.0.0)
 - spring-boot-devtools
 - spring-boot-starter-test
 - spring-security-test
@@ -33,7 +33,7 @@ The flyway script will initialize a database with a user Table, you could run re
 ## Rest example
 There is an insomnia file that you could directly use and try
 
-### login
+### Login
 request
 ```
 > POST /yourcompany/api/v1/auth/login HTTP/1.1
@@ -62,7 +62,7 @@ response
 }
 ```
 
-### authentication
+### Authentication
 request
 ```
 > GET /yourcompany/api/v1/users/1/authentication HTTP/1.1
@@ -138,4 +138,17 @@ response
   "credentials": "",
   "name": "admin@yourcompany.whatever"
 }
+```
+
+### Swagger-UI url
+springfox-boot-starter:3.0.0 moved the default swagger-ui path to api/swagger-ui/
+
+which in this application is automatically configured on this path
+```
+http://localhost:8080/yourcompany/api/swagger-ui/#/
+```
+
+The secured endpoints could be also reached via swagger-ui by clicking on Authorize button and insert
+```
+Bearer <token>
 ```

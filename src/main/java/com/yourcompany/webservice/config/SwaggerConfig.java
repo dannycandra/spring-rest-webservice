@@ -26,11 +26,10 @@ import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
-@EnableSwagger2
 @Profile("!tests")
+@SuppressWarnings("deprecation")
 public class SwaggerConfig {
 
 	public static final String BEARER = "Bearer";
@@ -61,7 +60,7 @@ public class SwaggerConfig {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.alternateTypeRules(newRule(typeResolver.resolve(Pageable.class), pageableMixin(restConfiguration),
 						Ordered.HIGHEST_PRECEDENCE))
-				.select().apis(RequestHandlerSelectors.basePackage("com.mycompany.webservice.controller"))
+				.select().apis(RequestHandlerSelectors.basePackage("com.yourcompany.webservice.controller"))
 				.paths(PathSelectors.any()).build().apiInfo(apiInfo()).securitySchemes(Arrays.asList(apiKey()));
 	}
 

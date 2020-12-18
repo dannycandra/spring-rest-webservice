@@ -2,29 +2,34 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.9.RELEASE</version>
+		<version>2.4.1</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>com.yourcompany.webservice</groupId>
 	<artifactId>spring-web-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-web-service</name>
 
+	<description>Bootstrapped project for easy and fast development of a REST webservice</description>
+
 	<scm>
 		<url>https://github.com/dannycandra/spring-web-service.git</url>
 	</scm>
 
-
 	<properties>
 		<java.version>1.8</java.version>
-		<springfox-swagger2.version>2.9.2</springfox-swagger2.version>
-		<modelmapper.version>2.3.2</modelmapper.version>
-		<oauth.version>2.3.5.RELEASE</oauth.version>
-		<jwt.version>1.0.10.RELEASE</jwt.version>
+		<spring-security-oauth2.version>2.4.0</spring-security-oauth2.version>
+		<springfox-boot-starter.version>3.0.0</springfox-boot-starter.version>
+		<modelmapper.version>2.3.9</modelmapper.version>
+		<oauth.version>2.5.0.RELEASE</oauth.version>
+		<jwt.version>1.1.1.RELEASE</jwt.version>
 	</properties>
 
 	<dependencies>
@@ -36,6 +41,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -54,7 +63,7 @@
 		<dependency>
 			<groupId>org.springframework.security.oauth.boot</groupId>
 			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
-			<version>2.1.9.RELEASE</version>
+			<version>${spring-security-oauth2.version}</version>
 		</dependency>
 
 		<dependency>
@@ -83,6 +92,13 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
 
@@ -124,20 +140,8 @@
 		<!-- swagger ui -->
 		<dependency>
 			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>${springfox-swagger2.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-data-rest</artifactId>
-			<version>${springfox-swagger2.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>${springfox-swagger2.version}</version>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>${springfox-boot-starter.version}</version>
 		</dependency>
 
 		<!-- xml support -->
@@ -222,5 +226,12 @@
 		</plugins>
 	</build>
 
-	<description>Bootstrapped project for easy and fast development of a REST webservice</description>
+	<repositories>
+		<repository>
+			<id>jcenter-snapshots</id>
+			<name>jcenter</name>
+			<url>https://jcenter.bintray.com/</url>
+		</repository>
+	</repositories>
+
 </project>

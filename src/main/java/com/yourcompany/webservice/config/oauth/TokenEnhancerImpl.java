@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 
 import com.yourcompany.webservice.model.UserDetailsImpl;
 
+@SuppressWarnings("deprecation")
 public class TokenEnhancerImpl implements TokenEnhancer {
 
 	@Override

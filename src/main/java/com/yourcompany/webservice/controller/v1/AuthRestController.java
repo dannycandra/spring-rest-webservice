@@ -16,6 +16,7 @@ import com.yourcompany.webservice.service.security.AuthService;
 
 import io.swagger.annotations.Api;
 
+@SuppressWarnings("deprecation")
 @Api(tags = "Webservice - authentication endpoint")
 @RestController()
 @RequestMapping("v1/auth")

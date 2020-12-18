@@ -11,6 +11,7 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 
 import com.yourcompany.webservice.config.ConfigConstants;
 
+@SuppressWarnings("deprecation")
 @Configuration
 @EnableResourceServer
 public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter {
