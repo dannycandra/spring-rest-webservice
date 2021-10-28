@@ -4,11 +4,68 @@ This is a bootstraped webservice project using spring boot
 
 The flyway script will initialize a database with a user Table, you could run resources/db/demo/demo_users.sql to insert your first admin, the password of that admin is password hashed with bcrypt(10).
 
+# Project initialized with
+
+Spring initialr
+[Spring Initialr](https://start.spring.io/)
+
 # What's included
 
-## Java version
+## Techstack
 
-11
+- Java 11
+- Maven
+- Spring boot 2.5.6 + Springframework
+- mariaDB (installed via XAMPP)
+
+## Maven
+
+Dependency management and build tool.
+
+A maven wrapper is included in this project,
+
+mvnw : bash (linux/mac) script to run maven
+`./mvnw clean`
+`./mvnw validate`
+`./mvnw package`
+`./mvnw deploy`
+`./mvnw install`
+
+mvnw.cmd : batch (windows) script to run maven
+`mvnw clean`
+`mvnw validate`
+`mvnw package`
+`mvnw deploy`
+`mvnw install`
+
+## API Health & Info
+
+### Heath check
+
+http://localhost:8080/actuator/health
+
+### Build info
+
+http://localhost:8080/actuator/info
+
+## API Documentation
+
+### Open API Documentation
+
+enabled through @EnableOpenApi
+
+http://localhost:8080/v3/api-docs
+
+### Swagger UI
+
+http://localhost:8080/swagger-ui/
+
+## VS Code plugins
+
+- Spring Boot Extension Pack
+- Extension Pack for Java
+- Gradle Extension Pack
+- XML Tools
 
 ## Libraries
 
@@ -153,20 +210,4 @@ response
   "credentials": "",
   "name": "admin@yourcompany.whatever"
 }
-```
-
-### Swagger-UI url
-
-springfox-boot-starter:3.0.0 moved the default swagger-ui path to api/swagger-ui/
-
-which in this application is automatically configured on this path
-
-```
-http://localhost:8080/yourcompany/api/swagger-ui/#/
-```
-
-The secured endpoints could be also reached via swagger-ui by clicking on Authorize button and insert
-
-```
-Bearer <token>
 ```
