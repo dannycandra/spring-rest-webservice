@@ -46,6 +46,7 @@ public class AppExceptionHandler {
 	public ResponseEntity<ErrorDto> handleCustomProviderNotFoundException(final ProviderNotFoundException ex) {
 		log.error("Handling unexpected exception with message: {} and httpstatus: {}", ex.getMessage());
 		ErrorDto errorsDto = new ErrorDto();
+		errorsDto.setStatus(String.valueOf(ErrorCode.UNKNOWN_ERROR.getHttpStatus()));
 		errorsDto.setCode(ErrorCode.UNKNOWN_ERROR.getErrorCode());
 		errorsDto.setMessage(ErrorCode.UNKNOWN_ERROR.getErrorMessage());
 		return ResponseEntity.status(ErrorCode.UNKNOWN_ERROR.getHttpStatus()).body(errorsDto);
@@ -61,6 +62,7 @@ public class AppExceptionHandler {
 	public ResponseEntity<ErrorDto> handleException(final Exception ex) {
 		log.error("Handling unexpected exception with message: {} and httpstatus: {}", ex.getMessage(), ex);
 		ErrorDto errorsDto = new ErrorDto();
+		errorsDto.setStatus(String.valueOf(ErrorCode.UNKNOWN_ERROR.getHttpStatus()));
 		errorsDto.setCode(ErrorCode.UNKNOWN_ERROR.getErrorCode());
 		errorsDto.setMessage(ErrorCode.UNKNOWN_ERROR.getErrorMessage());
 		return ResponseEntity.status(ErrorCode.UNKNOWN_ERROR.getHttpStatus()).body(errorsDto);
@@ -74,6 +76,7 @@ public class AppExceptionHandler {
 	 */
 	private ResponseEntity<ErrorDto> handleKnownError(final AppBaseRuntimeException ex) {
 		ErrorDto errorsDto = new ErrorDto();
+		errorsDto.setStatus(String.valueOf(ex.getError().getHttpStatus().value()));
 		errorsDto.setCode(ex.getError().getErrorCode());
 		errorsDto.setMessage(ex.getError().getErrorMessage());
 

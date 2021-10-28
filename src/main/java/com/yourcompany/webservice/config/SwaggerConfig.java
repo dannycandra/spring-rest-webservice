@@ -5,6 +5,7 @@ import static springfox.documentation.schema.AlternateTypeRules.newRule;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.modelmapper.spi.ErrorMessage;
@@ -17,7 +18,6 @@ import org.springframework.core.Ordered;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.fasterxml.classmate.TypeResolver;
 
@@ -28,9 +28,9 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.AuthorizationScope;
 import springfox.documentation.service.Contact;
+import springfox.documentation.service.HttpAuthenticationScheme;
 import springfox.documentation.service.SecurityReference;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
@@ -39,10 +39,8 @@ import springfox.documentation.spring.web.plugins.Docket;
 @EnableOpenApi
 @Configuration
 @Profile("!tests")
-@SuppressWarnings("deprecation")
 public class SwaggerConfig {
-
-	public static final String BEARER = "apiKey";
+	public static final String BEARER = "Bearer";
 
 	@Value("${oauth.client.id}")
 	private String oauthClientId;
@@ -67,21 +65,19 @@ public class SwaggerConfig {
 	@Bean
 	@ConditionalOnMissingBean
 	public Docket api() {
-		return new Docket(DocumentationType.OAS_30)
-				.alternateTypeRules(newRule(typeResolver.resolve(Pageable.class), pageableMixin(restConfiguration),
-						Ordered.HIGHEST_PRECEDENCE))
-				.select()
+		HttpAuthenticationScheme authenticationScheme = HttpAuthenticationScheme.JWT_BEARER_BUILDER
+				.name("Authorization").build();
+
+		Docket docket = new Docket(DocumentationType.OAS_30).select()
 				.apis(RequestHandlerSelectors.basePackage("com.yourcompany.webservice.controller"))
-				.paths(PathSelectors.any())
-				.build()
-				.apiInfo(apiInfo())
-                .directModelSubstitute(LocalDate.class, String.class)
-                .genericModelSubstitutes(ResponseEntity.class)
-                .additionalModels(new TypeResolver().resolve(ErrorMessage.class))
-                .useDefaultResponseMessages(false)
+				.paths(PathSelectors.any()).build().apiInfo(apiInfo())
+				.directModelSubstitute(LocalDate.class, String.class).genericModelSubstitutes(ResponseEntity.class)
+				.additionalModels(new TypeResolver().resolve(ErrorMessage.class)).useDefaultResponseMessages(false)
 				.securityContexts(Arrays.asList(securityContext()))
-				.securitySchemes(Arrays.asList(securityScheme()))
-                .enableUrlTemplating(false);
+				.securitySchemes(Collections.singletonList(authenticationScheme)).enableUrlTemplating(false)
+				.alternateTypeRules(newRule(typeResolver.resolve(Pageable.class), pageableMixin(restConfiguration),
+						Ordered.HIGHEST_PRECEDENCE));
+		return docket;
 	}
 
 	/**
@@ -93,6 +89,17 @@ public class SwaggerConfig {
 		return new ApiInfoBuilder().title("APPS API").description("").termsOfServiceUrl("https://www.example.com/api")
 				.contact(new Contact("Danny Candra", "http://www.example.com", "dannycandra@hotmail.com"))
 				.license("Danny Candra").licenseUrl("https://www.example.com").version("0.0.1").build();
+	}
+
+	private SecurityContext securityContext() {
+		return SecurityContext.builder().securityReferences(defaultAuth()).build();
+	}
+
+	private List<SecurityReference> defaultAuth() {
+		AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+		AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
+		authorizationScopes[0] = authorizationScope;
+		return Arrays.asList(new SecurityReference("Authorization", authorizationScopes));
 	}
 
 	/**
@@ -121,33 +128,5 @@ public class SwaggerConfig {
 	private AlternateTypePropertyBuilder property(Class<?> type, String name) {
 		return new AlternateTypePropertyBuilder().withName(name).withType(type).withCanRead(true).withCanWrite(true);
 	}
-//
-//	private ApiKey apiKey() {
-//		return new ApiKey(BEARER, "Authorization", "header");
-//	}
-	
-	private ApiKey securityScheme() {
-	    return new ApiKey("apiKey", "apiKey", "header");
-	 }
 
-    private SecurityContext securityContext() {
-        return SecurityContext.builder()
-                .securityReferences(defaultAuth())
-                .operationSelector(operationContext ->
-                        operationContext.requestMappingPattern().startsWith("/api")
-                )
-                .build();
-    }
-
-    private List<SecurityReference> defaultAuth() {
-        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
-        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-        authorizationScopes[0] = authorizationScope;
-        return Arrays.asList(new SecurityReference("apiKey", authorizationScopes));
-    }
-    
-    @Bean
-    public InternalResourceViewResolver defaultViewResolver() {
-        return new InternalResourceViewResolver();
-    }
 }

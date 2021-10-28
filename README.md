@@ -1,21 +1,28 @@
 # spring-web-service
+
 This is a bootstraped webservice project using spring boot
 
 The flyway script will initialize a database with a user Table, you could run resources/db/demo/demo_users.sql to insert your first admin, the password of that admin is password hashed with bcrypt(10).
 
 # What's included
-## libraries
-- spring boot (2.4.1)
+
+## Java version
+
+11
+
+## Libraries
+
+- spring boot (2.5.6)
 - spring-boot-starter-web
 - spring-boot-starter-data-jpa
 - spring-boot-starter-actuator
 - spring-boot-starter-hateoas
 - spring-boot-starter-security
-- spring-security-oauth2-autoconfigure (2.4.0)
-- spring-security-oauth2 (2.5.0.RELEASE)
-- spring-security-jwt (1.1.1.RELEASE)
+- spring-security-oauth2-autoconfigure
+- spring-security-oauth2
+- spring-security-jwt
 - mariadb java client
-- swagger ui (springfox 3.0.0)
+- swagger ui
 - spring-boot-devtools
 - spring-boot-starter-test
 - spring-security-test
@@ -25,16 +32,20 @@ The flyway script will initialize a database with a user Table, you could run re
 - modelmapper
 
 ## Configurations
+
 - authentication oauth2 with password flow (since our backend is the 1st party app), its up to you whenever you want to forward the refresh token to the SPA client or not. This could be easily achieve by setting refresh token to null in AuthService.
 - flyway: already configured, first script is version 0.0.1
 - jgitflow: you will need to configure it to your own repo for making a release version
 - audit: done by using mappedsuperclass and AuditingEntityListener
 
 ## Rest example
+
 There is an insomnia file that you could directly use and try
 
 ### Login
+
 request
+
 ```
 > POST /yourcompany/api/v1/auth/login HTTP/1.1
 > Host: localhost:8080
@@ -43,13 +54,14 @@ request
 > Accept: */*
 > Content-Length: 73
 
-| {
-| 	"username" : "admin@yourcompany.whatever",
-| 	"password" : "password"
-| }
+{
+  "username" : "admin@yourcompany.whatever",
+  "password" : "password"
+}
 ```
 
 response
+
 ```
 {
   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkB5b3VyY29tcGFueS53aGF0ZXZlciIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE1NzE1MzM1NzYsInVzZXJJZCI6MSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6IjE3MDVmYTgyLTgxYzMtNGI1ZS04YTA5LTQ2NTNlYThhNDVhMCIsImNsaWVudF9pZCI6ImFwcHMtY2xpZW50In0.HX0BL_jlI0tPUAhBjTt9K0XsjoDd194KeoUZKoPmq0M",
@@ -63,7 +75,9 @@ response
 ```
 
 ### Authentication
+
 request
+
 ```
 > GET /yourcompany/api/v1/users/1/authentication HTTP/1.1
 > Host: localhost:8080
@@ -74,6 +88,7 @@ request
 ```
 
 response
+
 ```
 {
   "authorities": [
@@ -141,14 +156,17 @@ response
 ```
 
 ### Swagger-UI url
+
 springfox-boot-starter:3.0.0 moved the default swagger-ui path to api/swagger-ui/
 
 which in this application is automatically configured on this path
+
 ```
 http://localhost:8080/yourcompany/api/swagger-ui/#/
 ```
 
 The secured endpoints could be also reached via swagger-ui by clicking on Authorize button and insert
+
 ```
 Bearer <token>
 ```
