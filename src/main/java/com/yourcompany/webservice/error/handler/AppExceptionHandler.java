@@ -1,5 +1,9 @@
 package com.yourcompany.webservice.error.handler;
 
+import com.yourcompany.webservice.error.ErrorCode;
+import com.yourcompany.webservice.error.exception.AppBaseRuntimeException;
+import com.yourcompany.webservice.model.dto.ErrorDto;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -7,10 +11,6 @@ import org.springframework.security.authentication.ProviderNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.yourcompany.webservice.error.ErrorCode;
-import com.yourcompany.webservice.error.exception.AppBaseRuntimeException;
-import com.yourcompany.webservice.model.dto.ErrorDto;
 
 /**
  * General Exception handler<br>

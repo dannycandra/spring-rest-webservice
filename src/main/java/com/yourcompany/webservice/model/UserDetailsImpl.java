@@ -2,11 +2,11 @@ package com.yourcompany.webservice.model;
 
 import java.util.Collection;
 
+import com.yourcompany.webservice.model.entity.User;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import com.yourcompany.webservice.model.entity.User;
 
 public class UserDetailsImpl implements UserDetails {
 

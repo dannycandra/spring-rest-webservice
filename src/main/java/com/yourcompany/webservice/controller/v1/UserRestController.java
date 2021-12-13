@@ -1,5 +1,13 @@
 package com.yourcompany.webservice.controller.v1;
 
+import com.querydsl.core.types.Predicate;
+import com.yourcompany.webservice.error.exception.UnauthorizedException;
+import com.yourcompany.webservice.model.dto.UserDto;
+import com.yourcompany.webservice.model.entity.QUser;
+import com.yourcompany.webservice.model.entity.User;
+import com.yourcompany.webservice.service.UserService;
+import com.yourcompany.webservice.service.security.ExtraInfoService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,14 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.querydsl.core.types.Predicate;
-import com.yourcompany.webservice.error.exception.UnauthorizedException;
-import com.yourcompany.webservice.model.dto.UserDto;
-import com.yourcompany.webservice.model.entity.QUser;
-import com.yourcompany.webservice.model.entity.User;
-import com.yourcompany.webservice.service.UserService;
-import com.yourcompany.webservice.service.security.ExtraInfoService;
 
 import io.swagger.annotations.Api;
 

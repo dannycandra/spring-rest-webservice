@@ -9,6 +9,6 @@ public class ViewResolverConfig {
 
   @Bean
   public InternalResourceViewResolver defaultViewResolver() {
-      return new InternalResourceViewResolver();
+    return new InternalResourceViewResolver();
   }
 }

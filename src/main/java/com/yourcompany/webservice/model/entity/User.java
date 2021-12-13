@@ -28,13 +28,13 @@ public class User extends Auditable<User> implements Serializable {
 	private String lastname;
 
 	private String password;
-	
+
 	private boolean accountNonExpired;
-	
+
 	private boolean accountNonLocked;
-	
+
 	private boolean credentialNonExpired;
-	
+
 	private boolean enabled;
 
 	public User() {

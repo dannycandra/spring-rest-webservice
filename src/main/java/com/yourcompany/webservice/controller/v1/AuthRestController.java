@@ -2,6 +2,9 @@ package com.yourcompany.webservice.controller.v1;
 
 import java.net.URISyntaxException;
 
+import com.yourcompany.webservice.model.dto.LoginDto;
+import com.yourcompany.webservice.service.security.AuthService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,9 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.yourcompany.webservice.model.dto.LoginDto;
-import com.yourcompany.webservice.service.security.AuthService;
 
 import io.swagger.annotations.Api;
 

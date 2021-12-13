@@ -2,15 +2,15 @@ package com.yourcompany.webservice.service.audit;
 
 import java.util.Optional;
 
+import com.yourcompany.webservice.model.entity.User;
+import com.yourcompany.webservice.model.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.yourcompany.webservice.model.entity.User;
-import com.yourcompany.webservice.model.repository.UserRepository;
 
 @Service
 public class AuditorAwareService implements AuditorAware<User> {

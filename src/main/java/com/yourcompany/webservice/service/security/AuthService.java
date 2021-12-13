@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.net.URISyntaxException;
 import java.util.Base64;
 
+import com.yourcompany.webservice.error.exception.WrongUsernameOrPasswordException;
+import com.yourcompany.webservice.model.dto.LoginDto;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +22,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-
-import com.yourcompany.webservice.error.exception.WrongUsernameOrPasswordException;
-import com.yourcompany.webservice.model.dto.LoginDto;
 
 /**
  * Authentication service

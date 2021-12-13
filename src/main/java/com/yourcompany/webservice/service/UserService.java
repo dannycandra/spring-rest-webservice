@@ -2,16 +2,16 @@ package com.yourcompany.webservice.service;
 
 import java.util.function.Function;
 
+import com.querydsl.core.types.Predicate;
+import com.yourcompany.webservice.model.dto.UserDto;
+import com.yourcompany.webservice.model.entity.User;
+import com.yourcompany.webservice.model.repository.UserRepository;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import com.querydsl.core.types.Predicate;
-import com.yourcompany.webservice.model.dto.UserDto;
-import com.yourcompany.webservice.model.entity.User;
-import com.yourcompany.webservice.model.repository.UserRepository;
 
 @Service
 public class UserService {

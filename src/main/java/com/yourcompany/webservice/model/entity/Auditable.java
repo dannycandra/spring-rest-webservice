@@ -38,7 +38,7 @@ public abstract class Auditable<U> {
 	@LastModifiedDate
 	@Temporal(TemporalType.TIMESTAMP)
 	protected Date lastModifiedDate;
-	
+
 	@Version
 	private BigInteger version;
 
@@ -81,5 +81,5 @@ public abstract class Auditable<U> {
 	public void setVersion(BigInteger version) {
 		this.version = version;
 	}
-	
+
 }
